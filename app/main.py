@@ -1,5 +1,5 @@
 def format_linter_error(error: dict) -> dict:
-    _dict = {
+    return {
         **{
             new: error[old]
             for old, new in {
@@ -12,16 +12,14 @@ def format_linter_error(error: dict) -> dict:
         },
         "source": "flake8",
     }
-    return _dict
 
 
 def format_single_linter_file(file_path: str, errors: list) -> dict:
-    _dict = {
+    return {
         "errors": [format_linter_error(e) for e in errors],
         "path": file_path,
         "status": "failed" if errors else "passed",
     }
-    return _dict
 
 
 def format_linter_report(linter_report: dict) -> list:
